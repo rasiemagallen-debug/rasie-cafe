@@ -160,6 +160,7 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
   const [userForm, setUserForm] = useState({ name: '', phone: '', email: '', notes: '' })
 
   const [settingsDirty, setSettingsDirty] = useState(false)
+  const [logoutConfirm, setLogoutConfirm] = useState(false)
 
   useEffect(() => {
     setOrders(loadOrders())
@@ -807,13 +808,22 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
                 <p className="text-sm uppercase tracking-[0.28em] text-[#a98b64]">Admin summary</p>
                 <p className="mt-3 text-lg font-semibold text-white">Actions & notes</p>
               </div>
-              <button
-                type="button"
-                onClick={onClose}
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm uppercase tracking-[0.22em] text-[#d4c1a5] transition hover:bg-[#e1ab43]/10"
-              >
-                Return site
-              </button>
+              <div className="flex flex-wrap gap-2">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm uppercase tracking-[0.22em] text-[#d4c1a5] transition hover:bg-[#e1ab43]/10"
+                >
+                  Return site
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLogoutConfirm(true)}
+                  className="rounded-full border border-red-500/20 bg-red-500/10 px-4 py-2 text-sm uppercase tracking-[0.22em] text-red-400 transition hover:bg-red-500/20"
+                >
+                  Log out
+                </button>
+              </div>
             </div>
             <div className="mt-6 space-y-4 text-sm leading-6 text-[#c7a77a]">
               <p>• Dashboard shows daily revenue, orders, reservations at a glance.</p>
@@ -852,6 +862,31 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
           </div>
         </aside>
       </div>
+
+      {logoutConfirm ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+          <div className="w-full max-w-sm rounded-[2rem] border border-white/10 bg-[#120804]/95 p-8 text-center shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
+            <p className="text-lg font-semibold text-white">Log out</p>
+            <p className="mt-3 text-sm leading-6 text-[#c7a77a]">Are you sure you want to log out of the admin panel?</p>
+            <div className="mt-8 flex gap-3">
+              <button
+                type="button"
+                onClick={() => setLogoutConfirm(false)}
+                className="flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-[#d4c1a5] transition hover:bg-[#e1ab43]/10"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => { setLogoutConfirm(false); onClose() }}
+                className="flex-1 rounded-full bg-red-500 px-4 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white shadow-[0_8px_25px_rgba(200,50,10,0.25)] transition hover:-translate-y-0.5"
+              >
+                Log out
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
 
       {toastMessage ? (
         <div className="fixed bottom-6 right-6 z-50 animate-[toast-in_0.3s_ease-out] rounded-3xl border border-[#e1ab43]/25 bg-[#120804]/95 px-5 py-4 text-sm text-[#f3cf86] shadow-[0_20px_60px_rgba(0,0,0,0.4)]">

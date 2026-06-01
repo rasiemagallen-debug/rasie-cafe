@@ -29,6 +29,7 @@ function StaffDashboard({ currentUser, onClose }: { currentUser: StaffMember; on
   const [currentPw, setCurrentPw] = useState('')
   const [newPw, setNewPw] = useState('')
   const [confirmPw, setConfirmPw] = useState('')
+  const [logoutConfirm, setLogoutConfirm] = useState(false)
 
   useEffect(() => {
     setOrders(loadOrders())
@@ -109,6 +110,13 @@ function StaffDashboard({ currentUser, onClose }: { currentUser: StaffMember; on
             className={`rounded-full px-5 py-3 text-sm font-semibold uppercase tracking-[0.24em] transition-all duration-300 hover:-translate-y-0.5 ${activeTab === 'password' ? 'bg-[#e1ab43] text-[#0c0502] shadow-[0_8px_25px_rgba(200,134,10,0.3)]' : 'border border-white/10 bg-white/5 text-[#d4c1a5] hover:border-[#e1ab43]/40 hover:text-[#f3cf86]'}`}
           >
             Change Password
+          </button>
+          <button
+            type="button"
+            onClick={() => setLogoutConfirm(true)}
+            className="rounded-full border border-red-500/20 bg-red-500/10 px-5 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-red-400 transition-all duration-300 hover:-translate-y-0.5 hover:bg-red-500/20"
+          >
+            Log out
           </button>
         </div>
       </div>
@@ -192,6 +200,13 @@ function StaffDashboard({ currentUser, onClose }: { currentUser: StaffMember; on
               >
                 Change Password
               </button>
+              <button
+                type="button"
+                onClick={() => setLogoutConfirm(true)}
+                className="rounded-full border border-red-500/20 bg-red-500/10 px-6 py-4 text-sm font-semibold uppercase tracking-[0.24em] text-red-400 transition hover:bg-red-500/20"
+              >
+                Log out
+              </button>
             </div>
           </div>
         </section>
@@ -253,6 +268,31 @@ function StaffDashboard({ currentUser, onClose }: { currentUser: StaffMember; on
             </form>
           </div>
         </section>
+      ) : null}
+
+      {logoutConfirm ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+          <div className="w-full max-w-sm rounded-[2rem] border border-white/10 bg-[#120804]/95 p-8 text-center shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
+            <p className="text-lg font-semibold text-white">Log out</p>
+            <p className="mt-3 text-sm leading-6 text-[#c7a77a]">Are you sure you want to log out of the staff dashboard?</p>
+            <div className="mt-8 flex gap-3">
+              <button
+                type="button"
+                onClick={() => setLogoutConfirm(false)}
+                className="flex-1 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-[#d4c1a5] transition hover:bg-[#e1ab43]/10"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => { setLogoutConfirm(false); onClose() }}
+                className="flex-1 rounded-full bg-red-500 px-4 py-3 text-sm font-semibold uppercase tracking-[0.22em] text-white shadow-[0_8px_25px_rgba(200,50,10,0.25)] transition hover:-translate-y-0.5"
+              >
+                Log out
+              </button>
+            </div>
+          </div>
+        </div>
       ) : null}
 
       {toastMessage ? (
