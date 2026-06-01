@@ -1,6 +1,7 @@
 import { type FormEvent, type SyntheticEvent, useMemo, useState, useEffect } from 'react'
 import heroImage from './assets/hero.png'
 import AdminDashboard, { initialStaff, type StaffMember } from './AdminDashboard'
+import { fetchOrders, insertOrder, fetchReservations, insertReservation, isSupabaseConfigured } from './lib/supabase'
 
 type MenuCategory = 'All' | 'Coffee' | 'Beverages' | 'Desserts' | 'Meals'
 
@@ -223,8 +224,20 @@ function App() {
   const [orderNotes, setOrderNotes] = useState('')
   const [ordersOpen, setOrdersOpen] = useState(false)
   const [reservationsOpen, setReservationsOpen] = useState(false)
+  const [remoteOrders, setRemoteOrders] = useState<OrderRecord[] | null>(null)
+  const [remoteReservations, setRemoteReservations] = useState<ReservationRecord[] | null>(null)
 
-  function loadReservations(): ReservationRecord[] {
+  async function loadRemoteReservations(): Promise<ReservationRecord[]> {
+    if (isSupabaseConfigured) {
+      try {
+        const data = await fetchReservations<ReservationRecord>()
+        if (data.length > 0) return data
+      } catch { /* fall through */ }
+    }
+    return []
+  }
+
+  function loadLocalReservations(): ReservationRecord[] {
     try {
       return JSON.parse(localStorage.getItem('reservations') || '[]')
     } catch {
@@ -246,7 +259,7 @@ function App() {
     return menuItems.filter((item) => item.category === selectedCategory)
   }, [selectedCategory])
 
-  function handleReservationSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleReservationSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
     const reservation: ReservationRecord = {
@@ -259,11 +272,17 @@ function App() {
       notes: String(data.get('res-notes') || ''),
       timestamp: new Date().toISOString(),
     }
+    if (isSupabaseConfigured) {
+      try {
+        await insertReservation(reservation)
+      } catch { /* fall through */ }
+    }
     const existing = JSON.parse(localStorage.getItem('reservations') || '[]')
     existing.push(reservation)
     localStorage.setItem('reservations', JSON.stringify(existing))
     setReservationSent(true)
     event.currentTarget.reset()
+    loadRemoteReservations().then(setRemoteReservations)
   }
 
   function handleNewsletterSubmit(event: FormEvent<HTMLFormElement>) {
@@ -310,6 +329,13 @@ function App() {
     }
   }, [cart])
 
+  useEffect(() => {
+    if (isSupabaseConfigured) {
+      loadRemoteOrders().then(setRemoteOrders)
+      loadRemoteReservations().then(setRemoteReservations)
+    }
+  }, [])
+
   function parsePrice(price: string) {
     const num = Number(String(price).replace(/[^0-9.]/g, ''))
     return Number.isFinite(num) ? num : 0
@@ -352,7 +378,17 @@ function App() {
 
   const [cartNotes, setCartNotes] = useState('')
 
-  function loadOrders(): OrderRecord[] {
+  async function loadRemoteOrders(): Promise<OrderRecord[]> {
+    if (isSupabaseConfigured) {
+      try {
+        const data = await fetchOrders<OrderRecord>()
+        if (data.length > 0) return data
+      } catch { /* fall through */ }
+    }
+    return []
+  }
+
+  function loadLocalOrders(): OrderRecord[] {
     try {
       return JSON.parse(localStorage.getItem('orders') || '[]')
     } catch {
@@ -360,13 +396,12 @@ function App() {
     }
   }
 
-  function handleCheckout() {
+  async function handleCheckout() {
     if (cart.length === 0) {
       setOrderMessage('Cart is empty.')
       return
     }
 
-    const orders = JSON.parse(localStorage.getItem('orders') || '[]')
     const orderRecord = {
       id: Date.now(),
       items: cart,
@@ -374,6 +409,12 @@ function App() {
       notes: cartNotes || undefined,
       timestamp: new Date().toISOString(),
     }
+    if (isSupabaseConfigured) {
+      try {
+        await insertOrder(orderRecord)
+      } catch { /* fall through */ }
+    }
+    const orders = JSON.parse(localStorage.getItem('orders') || '[]')
     orders.push(orderRecord)
     localStorage.setItem('orders', JSON.stringify(orders))
 
@@ -381,6 +422,7 @@ function App() {
     setCartOpen(false)
     setCartNotes('')
     setOrderMessage('Order placed. Thank you!')
+    loadRemoteOrders().then(setRemoteOrders)
   }
 
   return (
@@ -1290,10 +1332,10 @@ function App() {
             </div>
 
             <div className="mt-6 space-y-6">
-              {loadOrders().length === 0 ? (
+              {(remoteOrders ?? loadLocalOrders()).length === 0 ? (
                 <p className="text-sm text-[#d4c1a5]">No past orders yet.</p>
               ) : (
-                loadOrders().map((order) => (
+                (remoteOrders ?? loadLocalOrders()).map((order) => (
                   <div key={order.id} className="rounded-xl border border-white/8 bg-white/5 p-4">
                     <div className="flex items-center justify-between gap-4">
                       <div>
@@ -1337,10 +1379,10 @@ function App() {
             </div>
 
             <div className="mt-6 space-y-6">
-              {loadReservations().length === 0 ? (
+              {(remoteReservations ?? loadLocalReservations()).length === 0 ? (
                 <p className="text-sm text-[#d4c1a5]">No reservation requests found yet.</p>
               ) : (
-                loadReservations().map((reservation) => (
+                (remoteReservations ?? loadLocalReservations()).map((reservation) => (
                   <div key={reservation.id} className="rounded-xl border border-white/8 bg-white/5 p-4">
                     <div className="flex items-center justify-between gap-4">
                       <div>

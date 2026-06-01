@@ -1,4 +1,5 @@
-import { type FormEvent, useMemo, useState } from 'react'
+import { type FormEvent, useMemo, useState, useEffect } from 'react'
+import { fetchStaff, insertStaff, updateStaff, removeStaff, isSupabaseConfigured } from './lib/supabase'
 
 export type StaffRole = 'admin' | 'manager' | 'barista' | 'host'
 
@@ -106,6 +107,14 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
     status: 'Active' as StaffMember['status'],
   })
 
+  useEffect(() => {
+    if (isSupabaseConfigured) {
+      fetchStaff<StaffMember>().then((data) => {
+        if (data.length > 0) setStaff(data)
+      }).catch(() => {})
+    }
+  }, [])
+
   const metrics = useMemo(
     () => ({
       staffCount: staff.length,
@@ -123,7 +132,7 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
     setFormState((prev) => ({ ...prev, [target.name]: target.value }))
   }
 
-  const handleSaveStaff = (event: FormEvent<HTMLFormElement>) => {
+  const handleSaveStaff = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!formState.name.trim() || !formState.email.trim()) {
       setToastMessage('Please fill in both name and email.')
@@ -131,28 +140,33 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
     }
 
     if (selectedStaff) {
+      const updates = { name: formState.name, email: formState.email, role: formState.role, status: formState.status }
+      if (isSupabaseConfigured) {
+        updateStaff(selectedStaff.id, updates).catch(() => {})
+      }
       setStaff((current) =>
         current.map((member) =>
           member.id === selectedStaff.id
-            ? { ...member, name: formState.name, email: formState.email, role: formState.role, status: formState.status }
+            ? { ...member, ...updates }
             : member,
         ),
       )
       setSelectedStaff(null)
       setToastMessage('Staff profile updated successfully.')
     } else {
-      setStaff((current) => [
-        {
-          id: createId(),
-          name: formState.name,
-          email: formState.email,
-          role: formState.role,
-          status: formState.status,
-          lastSeen: 'Never signed in',
-          requiresPasswordReset: true,
-        },
-        ...current,
-      ])
+      const member: StaffMember = {
+        id: createId(),
+        name: formState.name,
+        email: formState.email,
+        role: formState.role,
+        status: formState.status,
+        lastSeen: 'Never signed in',
+        requiresPasswordReset: true,
+      }
+      if (isSupabaseConfigured) {
+        insertStaff(member).catch(() => {})
+      }
+      setStaff((current) => [member, ...current])
       setToastMessage('New staff added. Default password is 123456.')
     }
 
@@ -166,11 +180,17 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
   }
 
   const deleteStaff = (id: string) => {
+    if (isSupabaseConfigured) {
+      removeStaff(id).catch(() => {})
+    }
     setStaff((current) => current.filter((member) => member.id !== id))
     setToastMessage('Staff deleted successfully.')
   }
 
   const resetPassword = (id: string) => {
+    if (isSupabaseConfigured) {
+      updateStaff(id, { requiresPasswordReset: true, lastSeen: 'Password reset to default 123456' }).catch(() => {})
+    }
     setStaff((current) =>
       current.map((member) =>
         member.id === id
