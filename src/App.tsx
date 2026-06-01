@@ -449,7 +449,7 @@ function App() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-[0.82rem] uppercase tracking-[0.24em] text-[#d9c3a0] transition hover:text-[#f3cf86]"
+                className="relative text-[0.82rem] uppercase tracking-[0.24em] text-[#d9c3a0] transition hover:text-[#f3cf86] after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-[#e1ab43] after:transition-all after:duration-300 hover:after:w-full"
               >
                 {item.label}
               </a>
@@ -460,39 +460,39 @@ function App() {
             <button
               type="button"
               onClick={() => setOrdersOpen(true)}
-              className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#e6d4ba] transition hover:border-[#e1ab43]/40 hover:text-[#f3cf86]"
+              className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#e6d4ba] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#e1ab43]/40 hover:text-[#f3cf86] hover:shadow-[0_8px_25px_rgba(200,134,10,0.12)]"
             >
               Orders
             </button>
             <button
               type="button"
               onClick={() => setReservationsOpen(true)}
-              className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#e6d4ba] transition hover:border-[#e1ab43]/40 hover:text-[#f3cf86]"
+              className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#e6d4ba] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#e1ab43]/40 hover:text-[#f3cf86] hover:shadow-[0_8px_25px_rgba(200,134,10,0.12)]"
             >
               Reservations
             </button>
             <button
               type="button"
               onClick={() => setLoginOpen(true)}
-              className="rounded-full border border-[#f3cf86]/40 bg-[#f3cf86]/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#0c0502] transition hover:-translate-y-0.5 hover:bg-[#f3cf86]/15"
+              className="rounded-full border border-[#f3cf86]/40 bg-[#f3cf86]/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#0c0502] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f3cf86]/15 hover:shadow-[0_8px_25px_rgba(243,207,134,0.2)]"
             >
               Admin login
             </button>
             <a
               href="#reserve"
-              className="rounded-full border border-[#e1ab43]/40 bg-[#e1ab43]/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#f5d99a] transition hover:-translate-y-0.5 hover:bg-[#e1ab43]/15"
+              className="rounded-full border border-[#e1ab43]/40 bg-[#e1ab43]/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#f5d99a] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#e1ab43]/15 hover:shadow-[0_8px_25px_rgba(200,134,10,0.2)]"
             >
               Reserve Table
             </a>
             <a
               href="#menu"
-              className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#e6d4ba] transition hover:border-[#e1ab43]/40 hover:text-[#f3cf86]"
+              className="rounded-full border border-white/15 bg-white/5 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#e6d4ba] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#e1ab43]/40 hover:text-[#f3cf86] hover:shadow-[0_8px_25px_rgba(200,134,10,0.12)]"
             >
               Back to menu
             </a>
             <a
               href="#menu"
-              className="rounded-full bg-gradient-to-r from-[#e1ab43] to-[#9b6510] px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#0c0502] shadow-[0_12px_35px_rgba(200,134,10,0.28)] transition hover:-translate-y-0.5"
+              className="rounded-full bg-gradient-to-r from-[#e1ab43] to-[#9b6510] px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#0c0502] shadow-[0_12px_35px_rgba(200,134,10,0.28)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_45px_rgba(200,134,10,0.4)]"
             >
               See Menu
             </a>
@@ -569,8 +569,8 @@ function App() {
           <AdminDashboard currentUser={loggedInStaff} onClose={() => setLoggedInStaff(null)} />
         ) : (
           <>
-            <section id="home" className="mx-auto grid max-w-7xl gap-14 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pb-28 lg:pt-24">
-          <div className="max-w-3xl">
+            <section id="home" className="scroll-mt-28 mx-auto grid max-w-7xl gap-10 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pb-28 lg:pt-24">
+          <div className="max-w-3xl animate-[fade-in_0.6s_ease-out]">
             <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-[#e1ab43]/30 bg-[#e1ab43]/10 px-5 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-[#f3cf86]">
               <span className="h-2 w-2 rounded-full bg-[#e1ab43] shadow-[0_0_14px_rgba(200,134,10,0.75)]" />
               Welcome to Raseph Cafe
@@ -628,7 +628,7 @@ function App() {
 
           <div className="relative flex items-center justify-center">
             <div className="absolute inset-x-10 top-16 h-40 rounded-full bg-[#e1ab43]/20 blur-3xl" />
-            <div className="relative w-full max-w-[520px] rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+            <div className="relative w-full max-w-[520px] rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 to-white/5 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.45)] backdrop-blur-xl">
               <div className="overflow-hidden rounded-[1.5rem] border border-white/8">
                 <img
                   src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80"
@@ -638,7 +638,7 @@ function App() {
                 />
               </div>
 
-              <div className="absolute -left-4 top-10 hidden w-56 rounded-3xl border border-white/10 bg-[#120804]/90 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.4)] md:block">
+              <div className="absolute -left-4 top-10 hidden w-56 rounded-3xl border border-white/10 bg-[#120804]/90 p-5 shadow-[0_18px_50px_rgba(0,0,0,0.4)] md:block">
                 <p className="text-xs uppercase tracking-[0.3em] text-[#c7a77a]">Today’s highlight</p>
                 <p className="mt-2 font-display text-2xl text-white">Caramel Cloud Latte</p>
                 <p className="mt-2 text-sm leading-6 text-[#d5c1a3]">
@@ -646,7 +646,7 @@ function App() {
                 </p>
               </div>
 
-              <div className="absolute -bottom-6 right-4 hidden rounded-3xl border border-white/10 bg-[#120804]/95 p-4 shadow-[0_18px_50px_rgba(0,0,0,0.4)] md:block">
+              <div className="absolute -bottom-6 right-4 hidden rounded-3xl border border-white/10 bg-[#120804]/95 p-5 shadow-[0_18px_50px_rgba(0,0,0,0.4)] md:block">
                 <p className="text-xs uppercase tracking-[0.3em] text-[#c7a77a]">Signature experience</p>
                 <div className="mt-3 flex items-center gap-3">
                   <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#e1ab43]/15 text-2xl text-[#f3cf86]">
@@ -662,7 +662,7 @@ function App() {
           </div>
         </section>
 
-        <section id="story" className="border-y border-white/8 bg-[#120804]/80">
+        <section id="story" className="scroll-mt-28 border-y border-white/8 bg-[#120804]/80">
           <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8 lg:py-24">
             <div>
               <p className="text-sm uppercase tracking-[0.36em] text-[#f3cf86]">Our story</p>
@@ -678,7 +678,8 @@ function App() {
               {storyPoints.map((point, index) => (
                 <article
                   key={point}
-                  className="rounded-[1.75rem] border border-white/8 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.25)]"
+                  className="animate-[slide-up_0.5s_ease-out] rounded-[1.75rem] border border-white/8 bg-white/5 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.25)]"
+                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <p className="font-display text-3xl text-[#e1ab43]">
                     0{index + 1}
@@ -692,7 +693,7 @@ function App() {
           </div>
         </section>
 
-        <section id="menu" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+        <section id="menu" className="scroll-mt-28 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
               <p className="text-sm uppercase tracking-[0.36em] text-[#f3cf86]">Menu</p>
@@ -722,7 +723,7 @@ function App() {
             {filteredItems.map((item) => (
               <article
                 key={item.name}
-                className="group overflow-hidden rounded-[1.75rem] border border-white/8 bg-[#120804]/95 shadow-[0_20px_70px_rgba(0,0,0,0.3)] transition hover:-translate-y-1 hover:border-[#e1ab43]/25"
+                className="group overflow-hidden rounded-[1.75rem] border border-white/8 bg-[#120804]/95 shadow-[0_20px_70px_rgba(0,0,0,0.3)] transition-all duration-500 hover:-translate-y-1 hover:border-[#e1ab43]/25 hover:shadow-[0_25px_80px_rgba(200,134,10,0.15)]"
               >
                 <div className="relative h-56 overflow-hidden">
                   <img
@@ -795,7 +796,7 @@ function App() {
                   ['🪑', 'Reservation ready', 'A layout that can welcome small groups without losing atmosphere.'],
                   ['📍', 'Community cafe', 'Designed to feel local, warm, and easy to come back to.'],
                 ].map(([icon, title, copy]) => (
-                  <article key={title} className="rounded-[1.5rem] border border-white/8 bg-white/5 p-5">
+                  <article key={title} className="animate-[slide-up_0.5s_ease-out] rounded-[1.5rem] border border-white/8 bg-white/5 p-5">
                     <div className="flex items-start gap-4">
                       <div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#e1ab43]/12 text-2xl text-[#f3cf86]">
                         {icon}
@@ -831,7 +832,7 @@ function App() {
           </div>
         </section>
 
-        <section id="reserve" className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-24">
+        <section id="reserve" className="scroll-mt-28 mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8 lg:py-24">
           <div>
             <p className="text-sm uppercase tracking-[0.36em] text-[#f3cf86]">Reservations</p>
             <h2 className="mt-4 font-display text-4xl text-white sm:text-5xl">
@@ -952,7 +953,7 @@ function App() {
               {testimonials.map((item) => (
                 <blockquote
                   key={item.name}
-                  className="rounded-[1.75rem] border border-white/8 bg-white/5 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.24)]"
+                  className="animate-[slide-up_0.5s_ease-out] rounded-[1.75rem] border border-white/8 bg-white/5 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.24)]"
                 >
                   <div className="flex gap-1 text-[#e1ab43]">★★★★★</div>
                   <p className="mt-5 text-sm leading-8 text-[#e0ceaf]">{item.quote}</p>
@@ -966,7 +967,7 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+        <section id="contact" className="scroll-mt-28 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <p className="text-sm uppercase tracking-[0.36em] text-[#f3cf86]">Visit</p>
@@ -985,7 +986,7 @@ function App() {
                 ].map(([label, value]) => (
                   <div
                     key={label}
-                    className="flex items-center justify-between rounded-[1.5rem] border border-white/8 bg-white/5 px-5 py-4"
+                    className="flex items-center justify-between rounded-[1.5rem] border border-white/8 bg-white/5 p-5"
                   >
                     <span className="text-xs uppercase tracking-[0.28em] text-[#a98b64]">{label}</span>
                     <span className="text-sm text-[#f8f1e5]">{value}</span>
@@ -1034,7 +1035,7 @@ function App() {
                     ['Morning brew', 'Light, bright coffees for early starts.'],
                     ['Evening dessert', 'Late-night cakes and slow conversations.'],
                   ].map(([title, copy]) => (
-                    <div key={title} className="rounded-[1.25rem] border border-white/8 bg-white/5 p-4">
+                    <div key={title} className="rounded-[1.25rem] border border-white/8 bg-white/5 p-5">
                       <p className="font-display text-2xl text-white">{title}</p>
                       <p className="mt-2 text-sm leading-7 text-[#d4c1a5]">{copy}</p>
                     </div>
@@ -1046,7 +1047,7 @@ function App() {
         </section>
 
             {selectedMenuItem ? (
-              <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center bg-black/80 px-4 py-8 sm:px-6">
+              <div className="fixed inset-0 z-70 flex items-start sm:items-center justify-center bg-black/80 px-4 py-8 sm:px-6 animate-[fade-in_0.2s_ease-out]">
                 <div className="w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[2rem] border border-white/10 bg-[#120804]/95 p-8 shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -1175,7 +1176,7 @@ function App() {
             ) : null}
 
           {orderMessage ? (
-            <div className="fixed bottom-24 right-6 z-50 rounded-3xl border border-[#e1ab43]/25 bg-[#120804]/95 px-5 py-4 text-sm text-[#f5d99a] shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+            <div className="fixed bottom-24 right-6 z-50 animate-[toast-in_0.3s_ease-out] rounded-3xl border border-[#e1ab43]/25 bg-[#120804]/95 px-5 py-4 text-sm text-[#f5d99a] shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
               {orderMessage}
             </div>
           ) : null}
@@ -1183,7 +1184,7 @@ function App() {
         )}
 
         {loginOpen && !loggedInStaff ? (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 py-6 sm:px-6">
+          <div className="fixed inset-0 z-70 flex items-center justify-center bg-black/70 px-4 py-6 sm:px-6 animate-[fade-in_0.2s_ease-out]">
             <div className="w-full max-w-lg rounded-[2rem] border border-white/10 bg-[#120804]/95 p-8 shadow-[0_30px_80px_rgba(0,0,0,0.5)]">
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -1255,9 +1256,9 @@ function App() {
       <button
         type="button"
         onClick={() => setCartOpen(true)}
-        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-[#0c0502]/95 px-4 py-3 shadow-lg"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-[#0c0502]/95 px-4 py-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,134,10,0.25)]"
       >
-        <span className="rounded-full bg-[#e1ab43] px-3 py-2 font-semibold text-[#0c0502]">{cartCount()}</span>
+        <span className="rounded-full bg-[#e1ab43] px-3 py-2 font-semibold text-[#0c0502] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(200,134,10,0.5)]">{cartCount()}</span>
         <div className="text-sm text-[#f8f1e5]">
           <div>Cart</div>
           <div className="text-xs text-[#c7a77a]">Subtotal ₱{cartSubtotal()}</div>
@@ -1265,7 +1266,7 @@ function App() {
       </button>
 
       {cartOpen ? (
-        <div className="fixed inset-0 z-60 flex">
+        <div className="fixed inset-0 z-40 flex">
           <div className="flex-1" onClick={() => setCartOpen(false)} />
           <aside className="w-full max-w-md bg-[#120804]/95 border-l border-white/8 p-6 overflow-y-auto">
             <div className="flex items-center justify-between">
@@ -1323,7 +1324,7 @@ function App() {
       ) : null}
 
       {ordersOpen ? (
-        <div className="fixed inset-0 z-70 flex">
+        <div className="fixed inset-0 z-60 flex">
           <div className="flex-1" onClick={() => setOrdersOpen(false)} />
           <aside className="w-full max-w-2xl bg-[#120804]/95 border-l border-white/8 p-6 overflow-y-auto">
             <div className="flex items-center justify-between">
@@ -1370,7 +1371,7 @@ function App() {
       ) : null}
 
       {reservationsOpen ? (
-        <div className="fixed inset-0 z-70 flex">
+        <div className="fixed inset-0 z-60 flex">
           <div className="flex-1" onClick={() => setReservationsOpen(false)} />
           <aside className="w-full max-w-2xl bg-[#120804]/95 border-l border-white/8 p-6 overflow-y-auto">
             <div className="flex items-center justify-between">
