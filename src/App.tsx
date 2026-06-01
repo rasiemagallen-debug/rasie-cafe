@@ -1,6 +1,7 @@
 import { type FormEvent, type SyntheticEvent, useMemo, useState, useEffect } from 'react'
 import heroImage from './assets/hero.png'
 import AdminDashboard, { initialStaff, type StaffMember } from './AdminDashboard'
+import StaffDashboard from './StaffDashboard'
 import { fetchOrders, insertOrder, fetchReservations, insertReservation, isSupabaseConfigured } from './lib/supabase'
 
 type MenuCategory = 'All' | 'Coffee' | 'Beverages' | 'Desserts' | 'Meals'
@@ -296,11 +297,14 @@ function App() {
     const account = loginAccounts.find((item) => item.username.toLowerCase() === username)
 
     if (!account) {
-      setLoginError('No admin account found for that username. Use jireh.')
+      setLoginError('No staff account found for that username.')
       return
     }
 
-    if (loginPassword !== account.password) {
+    const storedPasswords: Record<string, string> = JSON.parse(localStorage.getItem('staffPasswords') || '{}')
+    const expectedPassword = storedPasswords[account.staffId] ?? account.password
+
+    if (loginPassword !== expectedPassword) {
       setLoginError('Password is incorrect.')
       return
     }
@@ -566,7 +570,11 @@ function App() {
 
       <main className="relative z-10">
         {loggedInStaff ? (
-          <AdminDashboard currentUser={loggedInStaff} onClose={() => setLoggedInStaff(null)} />
+          loggedInStaff.role === 'admin' || loggedInStaff.role === 'manager' ? (
+            <AdminDashboard currentUser={loggedInStaff} onClose={() => setLoggedInStaff(null)} />
+          ) : (
+            <StaffDashboard currentUser={loggedInStaff} onClose={() => setLoggedInStaff(null)} />
+          )
         ) : (
           <>
             <section id="home" className="scroll-mt-28 mx-auto grid max-w-7xl gap-10 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pb-28 lg:pt-24">
