@@ -260,8 +260,8 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
   }
 
   function resetPassword(id: string) {
-    if (isSupabaseConfigured) updateStaff(id, { requiresPasswordReset: true, lastSeen: 'Password reset to default 123456' }).catch(() => {})
-    setStaff((c) => c.map((m) => m.id === id ? { ...m, requiresPasswordReset: true, lastSeen: 'Password reset to default 123456' } : m))
+    if (isSupabaseConfigured) updateStaff(id, { requiresPasswordReset: true }).catch(() => {})
+    setStaff((c) => c.map((m) => m.id === id ? { ...m, requiresPasswordReset: true } : m))
     const member = staff.find((m) => m.id === id)
     addLogEntry(currentUser?.name ?? 'Admin', 'Reset password', `Reset password for ${member?.name ?? id}`)
     setToastMessage(`${member?.name ?? 'Staff'} password reset to 123456.`)
@@ -504,7 +504,7 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
                           <td className="px-6 py-4">{member.email}</td>
                           <td className="px-6 py-4 uppercase tracking-[0.18em] text-[#a98b64]">{member.role}</td>
                           <td className="px-6 py-4">
-                            <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] ${member.status === 'Active' ? 'bg-green-900/40 text-green-400' : 'bg-red-900/30 text-red-400'}`}>
+                            <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] ${member.status === 'Active' ? 'bg-[#e1ab43]/15 text-[#f3cf86]' : 'bg-white/5 text-[#a98b64]'}`}>
                               {member.status}
                             </span>
                           </td>
@@ -577,7 +577,7 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
                     onClick={undoSelectUser}
                     className="rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold uppercase tracking-[0.24em] text-[#d4c1a5] transition hover:bg-[#e1ab43]/10"
                   >
-                    {selectedUser ? 'Add new user' : 'Add new user'}
+                    {selectedUser ? 'Edit user' : 'Add new user'}
                   </button>
                 </div>
 

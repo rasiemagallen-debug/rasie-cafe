@@ -204,7 +204,7 @@ function App() {
   const [newsletterSent, setNewsletterSent] = useState(false)
   const [loginOpen, setLoginOpen] = useState(false)
   const [loggedInStaff, setLoggedInStaff] = useState<StaffMember | null>(null)
-  const [loginEmail, setLoginEmail] = useState('')
+  const [loginUsername, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const [loginError, setLoginError] = useState<string | null>(null)
   const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem | null>(null)
@@ -227,6 +227,7 @@ function App() {
   const [reservationsOpen, setReservationsOpen] = useState(false)
   const [remoteOrders, setRemoteOrders] = useState<OrderRecord[] | null>(null)
   const [remoteReservations, setRemoteReservations] = useState<ReservationRecord[] | null>(null)
+  const [cartNotes, setCartNotes] = useState('')
 
   async function loadRemoteReservations(): Promise<ReservationRecord[] | null> {
     try {
@@ -293,7 +294,7 @@ function App() {
 
   function handleLoginSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const username = loginEmail.trim().toLowerCase()
+    const username = loginUsername.trim().toLowerCase()
     const account = loginAccounts.find((item) => item.username.toLowerCase() === username)
 
     if (!account) {
@@ -378,8 +379,6 @@ function App() {
   function removeCartItem(id: string) {
     setCart((c) => c.filter((it) => it.id !== id))
   }
-
-  const [cartNotes, setCartNotes] = useState('')
 
   async function loadRemoteOrders(): Promise<OrderRecord[] | null> {
     try {
@@ -480,7 +479,7 @@ function App() {
               onClick={() => setLoginOpen(true)}
               className="rounded-full border border-[#f3cf86]/40 bg-[#f3cf86]/10 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#0c0502] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#f3cf86]/15 hover:shadow-[0_8px_25px_rgba(243,207,134,0.2)]"
             >
-              Admin login
+              Staff login
             </button>
             <a
               href="#reserve"
@@ -555,7 +554,7 @@ function App() {
               }}
               className="rounded-2xl border border-white/8 bg-white/4 px-4 py-3 text-left text-sm text-[#e6d4ba]"
             >
-              Admin login
+              Staff login
             </button>
             <a
               href="#menu"
@@ -937,7 +936,7 @@ function App() {
 
             {reservationSent ? (
               <p className="mt-4 rounded-2xl border border-[#e1ab43]/25 bg-[#e1ab43]/10 px-4 py-3 text-sm text-[#f5d99a]">
-                Reservation request saved locally. Connect Supabase later to persist submissions.
+                Reservation saved. Data synced to cloud when Supabase is connected.
               </p>
             ) : null}
           </form>
@@ -1018,7 +1017,7 @@ function App() {
               </form>
               {newsletterSent ? (
                 <p className="mt-3 text-sm text-[#f5d99a]">
-                  You’re on the list locally. Wire this up to Supabase when the backend is ready.
+                  You’re on the list. Wire this to a backend to send emails.
                 </p>
               ) : null}
             </div>
@@ -1197,13 +1196,13 @@ function App() {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-sm uppercase tracking-[0.28em] text-[#d4c1a5]">
-                    Admin login
+                    Staff login
                   </p>
                   <h2 className="mt-3 text-3xl font-semibold text-white">
-                    Access the admin dashboard
+                    Access the staff dashboard
                   </h2>
                   <p className="mt-3 text-sm leading-6 text-[#c7a77a]">
-                    Use your admin username and password to sign in.
+                    Use your staff username and password to sign in.
                   </p>
                 </div>
                 <button
@@ -1225,7 +1224,7 @@ function App() {
                   <span className="block uppercase tracking-[0.24em] text-[#a98b64]">Username</span>
                   <input
                     type="text"
-                    value={loginEmail}
+                    value={loginUsername}
                     onChange={(event) => setLoginEmail(event.target.value)}
                     required
                     placeholder="jireh"
