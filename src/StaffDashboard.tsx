@@ -28,7 +28,7 @@ function StaffDashboard({ currentUser, onClose }: { currentUser: StaffMember; on
 
   const [currentPw, setCurrentPw] = useState('')
   const [newPw, setNewPw] = useState('')
-  const [confirmPw, setConfirmPw] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [logoutConfirm, setLogoutConfirm] = useState(false)
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function StaffDashboard({ currentUser, onClose }: { currentUser: StaffMember; on
     event.preventDefault()
 
     const stored = loadStaffPasswords()
-    const defaultPasswords: Record<string, string> = { 'staff-1': 'faith', 'staff-2': '123456' }
+    const defaultPasswords: Record<string, string> = { 'staff-1': 'faith', 'staff-2': '123456', 'staff-5': '212121' }
     const actualCurrent = stored[currentUser.id] ?? defaultPasswords[currentUser.id] ?? ''
 
     if (currentPw !== actualCurrent) {
@@ -63,7 +63,7 @@ function StaffDashboard({ currentUser, onClose }: { currentUser: StaffMember; on
       return
     }
 
-    if (newPw !== confirmPw) {
+    if (newPw !== confirmPassword) {
       setToastMessage('Passwords do not match.')
       return
     }
@@ -72,7 +72,7 @@ function StaffDashboard({ currentUser, onClose }: { currentUser: StaffMember; on
     saveStaffPasswords(stored)
     setCurrentPw('')
     setNewPw('')
-    setConfirmPw('')
+    setConfirmPassword('')
     setToastMessage('Password changed successfully.')
   }
 
@@ -250,8 +250,8 @@ function StaffDashboard({ currentUser, onClose }: { currentUser: StaffMember; on
                 <span className="block uppercase tracking-[0.24em] text-[#a98b64]">Confirm New Password</span>
                 <input
                   type="password"
-                  value={confirmPw}
-                  onChange={(e) => setConfirmPw(e.target.value)}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   minLength={4}
                   placeholder="Repeat new password"

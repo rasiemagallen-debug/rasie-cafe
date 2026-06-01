@@ -56,6 +56,7 @@ type LoginAccount = {
 const loginAccounts: LoginAccount[] = [
   { username: 'jireh', password: 'faith', staffId: 'staff-1' },
   { username: 'mia', password: '123456', staffId: 'staff-2' },
+  { username: 'jai', password: '212121', staffId: 'staff-5' },
 ]
 
 const menuCategories: MenuCategory[] = [
@@ -204,7 +205,7 @@ function App() {
   const [newsletterSent, setNewsletterSent] = useState(false)
   const [loginOpen, setLoginOpen] = useState(false)
   const [loggedInStaff, setLoggedInStaff] = useState<StaffMember | null>(null)
-  const [loginUsername, setLoginEmail] = useState('')
+  const [loginUsername, setLoginUsername] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
   const [loginError, setLoginError] = useState<string | null>(null)
   const [selectedMenuItem, setSelectedMenuItem] = useState<MenuItem | null>(null)
@@ -313,7 +314,7 @@ function App() {
     const staffMember = initialStaff.find((member) => member.id === account.staffId) ?? initialStaff[0]
     setLoggedInStaff(staffMember)
     setLoginOpen(false)
-    setLoginEmail('')
+    setLoginUsername('')
     setLoginPassword('')
     setLoginError(null)
   }
@@ -1092,43 +1093,41 @@ function App() {
                         </p>
                       </div>
 
-                      <div className="space-y-4">
-                        <div className="grid gap-3 sm:grid-cols-3">
-                          <div className="relative z-10 flex flex-col gap-2">
-                            <p className="text-xs uppercase text-[#a98b64]">Size</p>
-                            <div className="flex gap-2">
-                              {(['Small', 'Medium', 'Large'] as CartItem['size'][]).map((s) => (
-                                <button
-                                  key={s}
-                                  type="button"
-                                  onClick={() => setCustomSize(s)}
-                                  className={`rounded-full px-3 py-2 text-sm ${customSize === s ? 'bg-[#e1ab43] text-[#0c0502]' : 'bg-white/4 text-[#d4c1a5]'}`}
-                                >
-                                  {s}
-                                </button>
-                              ))}
-                            </div>
+                      <div className="space-y-5">
+                        <div className="flex flex-col gap-2">
+                          <p className="text-xs uppercase text-[#a98b64]">Size</p>
+                          <div className="flex gap-2">
+                            {(['Small', 'Medium', 'Large'] as CartItem['size'][]).map((s) => (
+                              <button
+                                key={s}
+                                type="button"
+                                onClick={() => setCustomSize(s)}
+                                className={`rounded-full px-4 py-2 text-sm ${customSize === s ? 'bg-[#e1ab43] text-[#0c0502]' : 'bg-white/4 text-[#d4c1a5]'}`}
+                              >
+                                {s}
+                              </button>
+                            ))}
                           </div>
+                        </div>
 
-                          <div className="flex flex-col gap-2">
-                            <p className="text-xs uppercase text-[#a98b64]">Sugar</p>
-                            <select value={customSugar} onChange={(e) => setCustomSugar(e.currentTarget.value as any)} className="w-full rounded-2xl border border-white/10 bg-[#0c0502] px-3 py-2 text-white">
-                              <option>No</option>
-                              <option>Less</option>
-                              <option>Regular</option>
-                              <option>Extra</option>
-                            </select>
-                          </div>
+                        <div className="flex flex-col gap-2">
+                          <p className="text-xs uppercase text-[#a98b64]">Sugar level</p>
+                          <select value={customSugar} onChange={(e) => setCustomSugar(e.currentTarget.value as any)} className="w-full rounded-2xl border border-white/10 bg-[#0c0502] px-4 py-2.5 text-white">
+                            <option>No</option>
+                            <option>Less</option>
+                            <option>Regular</option>
+                            <option>Extra</option>
+                          </select>
+                        </div>
 
-                          <div className="flex flex-col gap-2">
-                            <p className="text-xs uppercase text-[#a98b64]">Ice</p>
-                            <select value={customIce} onChange={(e) => setCustomIce(e.currentTarget.value as any)} className="w-full rounded-2xl border border-white/10 bg-[#0c0502] px-3 py-2 text-white">
-                              <option>No</option>
-                              <option>Less</option>
-                              <option>Regular</option>
-                              <option>Extra</option>
-                            </select>
-                          </div>
+                        <div className="flex flex-col gap-2">
+                          <p className="text-xs uppercase text-[#a98b64]">Ice level</p>
+                          <select value={customIce} onChange={(e) => setCustomIce(e.currentTarget.value as any)} className="w-full rounded-2xl border border-white/10 bg-[#0c0502] px-4 py-2.5 text-white">
+                            <option>No</option>
+                            <option>Less</option>
+                            <option>Regular</option>
+                            <option>Extra</option>
+                          </select>
                         </div>
 
                         <div>
@@ -1163,10 +1162,6 @@ function App() {
                             Add to cart
                           </button>
                         </div>
-
-                        {orderMessage ? (
-                          <p className="text-sm text-[#f5d99a]">{orderMessage}</p>
-                        ) : null}
 
                         <button
                           type="button"
@@ -1210,7 +1205,7 @@ function App() {
                   onClick={() => {
                     setLoginOpen(false)
                     setLoginError(null)
-                    setLoginEmail('')
+                    setLoginUsername('')
                     setLoginPassword('')
                   }}
                   className="rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm uppercase tracking-[0.22em] text-[#d4c1a5] transition hover:bg-[#e1ab43]/10"
@@ -1225,7 +1220,7 @@ function App() {
                   <input
                     type="text"
                     value={loginUsername}
-                    onChange={(event) => setLoginEmail(event.target.value)}
+                    onChange={(event) => setLoginUsername(event.target.value)}
                     required
                     placeholder="jireh"
                     className="mt-3 w-full rounded-2xl border border-white/10 bg-[#0c0502] px-4 py-3 text-white outline-none transition focus:border-[#e1ab43]/55"
@@ -1265,7 +1260,7 @@ function App() {
         onClick={() => setCartOpen(true)}
         className="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-[#0c0502]/95 px-4 py-3 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(200,134,10,0.25)]"
       >
-        <span className="rounded-full bg-[#e1ab43] px-3 py-2 font-semibold text-[#0c0502] transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(200,134,10,0.5)]">{cartCount()}</span>
+        <span className="rounded-full bg-[#e1ab43] px-3 py-2 font-semibold text-[#0c0502]">{cartCount()}</span>
         <div className="text-sm text-[#f8f1e5]">
           <div>Cart</div>
           <div className="text-xs text-[#c7a77a]">Subtotal ₱{cartSubtotal()}</div>
@@ -1322,7 +1317,7 @@ function App() {
                 </div>
                 <div className="space-y-2">
                   <button onClick={handleCheckout} className="rounded-full bg-gradient-to-r from-[#e1ab43] to-[#9b6510] px-6 py-3 text-sm font-semibold">Checkout</button>
-                  <button onClick={() => { setCart([]); setCartOpen(false); }} className="w-full text-sm text-[#d4c1a5]">Clear cart</button>
+                  <button onClick={() => { setCart([]); setCartOpen(false); setCartNotes(''); }} className="w-full text-sm text-[#d4c1a5]">Clear cart</button>
                 </div>
               </div>
             </div>

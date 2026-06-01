@@ -55,6 +55,7 @@ export const initialStaff: StaffMember[] = [
   { id: 'staff-2', name: 'Mia Santos', email: 'mia@rasephcafe.com', role: 'manager', status: 'Active', lastSeen: '10 min ago', requiresPasswordReset: false },
   { id: 'staff-3', name: 'Jonah Cruz', email: 'jonah@rasephcafe.com', role: 'barista', status: 'Active', lastSeen: '18 min ago', requiresPasswordReset: false },
   { id: 'staff-4', name: 'Leah Reyes', email: 'leah@rasephcafe.com', role: 'host', status: 'Inactive', lastSeen: 'Yesterday', requiresPasswordReset: false },
+  { id: 'staff-5', name: 'Jai', email: 'jai@rasephcafe.com', role: 'barista', status: 'Active', lastSeen: 'Just now', requiresPasswordReset: false },
 ]
 
 const initialLogs: LogEntry[] = [
@@ -240,7 +241,7 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
       if (isSupabaseConfigured) insertStaff(member).catch(() => {})
       setStaff((c) => [member, ...c])
       addLogEntry(currentUser?.name ?? 'Admin', 'Added staff', `Created ${formState.name} as ${formState.role}`)
-      setToastMessage('New staff added. Default password is 123456.')
+      setToastMessage('New staff added successfully.')
     }
 
     setFormState({ name: '', email: '', role: 'barista', status: 'Active' })
@@ -265,7 +266,7 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
     setStaff((c) => c.map((m) => m.id === id ? { ...m, requiresPasswordReset: true } : m))
     const member = staff.find((m) => m.id === id)
     addLogEntry(currentUser?.name ?? 'Admin', 'Reset password', `Reset password for ${member?.name ?? id}`)
-    setToastMessage(`${member?.name ?? 'Staff'} password reset to 123456.`)
+    setToastMessage(`${member?.name ?? 'Staff'} password has been reset.`)  
   }
 
   function undoSelectStaff() {
@@ -524,7 +525,7 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
               <div className="rounded-[1.75rem] border border-white/10 bg-white/5 p-6 shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
                 <h3 className="text-xl font-semibold text-white">{selectedStaff ? 'Edit Staff' : 'Add New Staff'}</h3>
                 <p className="mt-2 text-sm leading-6 text-[#c7a77a]">
-                  Fill in the details below. New staff default password is <strong>123456</strong>.
+                  Fill in the details below. New staff will set their own password on first login.
                 </p>
                 <form className="mt-6 grid gap-4 sm:grid-cols-2" onSubmit={handleSaveStaff}>
                   <label className="space-y-2 text-sm text-[#d4c1a5]">

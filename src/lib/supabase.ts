@@ -60,6 +60,7 @@ export async function removeStaff(id: string): Promise<void> {
 }
 
 export type StoreSettings = {
+  id?: string
   cafeName: string
   tagline: string
   openingHours: string
