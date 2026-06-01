@@ -8,8 +8,8 @@ export const supabase = isSupabaseConfigured
   ? createClient(supabaseUrl!, supabaseAnonKey!)
   : null
 
-export async function fetchOrders<T = any>(): Promise<T[]> {
-  if (!supabase) return []
+export async function fetchOrders<T = any>(): Promise<T[] | null> {
+  if (!supabase) return null
   const { data, error } = await supabase.from('orders').select('*').order('timestamp', { ascending: false })
   if (error) throw error
   return (data ?? []) as T[]
@@ -21,8 +21,8 @@ export async function insertOrder(order: any): Promise<void> {
   if (error) throw error
 }
 
-export async function fetchReservations<T = any>(): Promise<T[]> {
-  if (!supabase) return []
+export async function fetchReservations<T = any>(): Promise<T[] | null> {
+  if (!supabase) return null
   const { data, error } = await supabase.from('reservations').select('*').order('timestamp', { ascending: false })
   if (error) throw error
   return (data ?? []) as T[]
@@ -34,8 +34,8 @@ export async function insertReservation(reservation: any): Promise<void> {
   if (error) throw error
 }
 
-export async function fetchStaff<T = any>(): Promise<T[]> {
-  if (!supabase) return []
+export async function fetchStaff<T = any>(): Promise<T[] | null> {
+  if (!supabase) return null
   const { data, error } = await supabase.from('staff').select('*')
   if (error) throw error
   return (data ?? []) as T[]

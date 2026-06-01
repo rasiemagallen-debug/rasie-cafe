@@ -1,0 +1,358 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "☕ Raseph Cafe Espresso • Desserts • Slow moments" [ref=e6] [cursor=pointer]:
+        - /url: "#home"
+        - generic [ref=e7]: ☕
+        - generic [ref=e8]:
+          - generic [ref=e9]: Raseph Cafe
+          - generic [ref=e10]: Espresso • Desserts • Slow moments
+      - navigation [ref=e11]:
+        - link "Home" [ref=e12] [cursor=pointer]:
+          - /url: "#home"
+        - link "Menu" [ref=e13] [cursor=pointer]:
+          - /url: "#menu"
+        - link "Story" [ref=e14] [cursor=pointer]:
+          - /url: "#story"
+        - link "Reserve" [ref=e15] [cursor=pointer]:
+          - /url: "#reserve"
+        - link "Visit" [ref=e16] [cursor=pointer]:
+          - /url: "#contact"
+      - generic [ref=e17]:
+        - button "Orders" [ref=e18]
+        - button "Reservations" [ref=e19]
+        - button "Admin login" [ref=e20]
+        - link "Reserve Table" [ref=e21] [cursor=pointer]:
+          - /url: "#reserve"
+        - link "Back to menu" [ref=e22] [cursor=pointer]:
+          - /url: "#menu"
+        - link "See Menu" [ref=e23] [cursor=pointer]:
+          - /url: "#menu"
+  - main [ref=e24]:
+    - generic [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]: Welcome to Raseph Cafe
+        - heading "Coffee that feels crafted, desserts that feel luminous." [level=1] [ref=e29]:
+          - text: Coffee that feels crafted,
+          - text: desserts that feel luminous.
+        - paragraph [ref=e30]: Raseph Cafe blends warm espresso, house-made desserts, and slow-table hospitality into a space designed for lingering, meeting, and returning.
+        - generic [ref=e31]:
+          - link "Explore Menu" [ref=e32] [cursor=pointer]:
+            - /url: "#menu"
+          - link "Reserve a Table" [ref=e33] [cursor=pointer]:
+            - /url: "#reserve"
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - paragraph [ref=e36]: Freshly roasted
+            - paragraph [ref=e37]: Daily batches
+          - generic [ref=e38]:
+            - paragraph [ref=e39]: Kitchen made
+            - paragraph [ref=e40]: Desserts & meals
+          - generic [ref=e41]:
+            - paragraph [ref=e42]: Visit ready
+            - paragraph [ref=e43]: Reserve ahead
+        - generic [ref=e44]:
+          - generic [ref=e45]: 4.9 guest rating
+          - generic [ref=e46]: Open daily 8:00 AM - 10:00 PM
+          - generic [ref=e47]: Imus, Cavite
+      - generic [ref=e50]:
+        - img "Warm coffee and pastries at Raseph Cafe" [ref=e52]
+        - generic [ref=e53]:
+          - paragraph [ref=e54]: Today’s highlight
+          - paragraph [ref=e55]: Caramel Cloud Latte
+          - paragraph [ref=e56]: Espresso, caramel cream, and a toasted finish that lands somewhere between dessert and ritual.
+        - generic [ref=e57]:
+          - paragraph [ref=e58]: Signature experience
+          - generic [ref=e59]:
+            - generic [ref=e60]: ✦
+            - generic [ref=e61]:
+              - paragraph [ref=e62]: Table service
+              - paragraph [ref=e63]: Built for slow moments and repeat visits.
+    - generic [ref=e65]:
+      - generic [ref=e66]:
+        - paragraph [ref=e67]: Our story
+        - heading "Built for guests who want more than a quick cup." [level=2] [ref=e68]
+        - paragraph [ref=e69]: "The attached concept inspired the mood: dark roast tones, polished plating, and a cafe that feels premium without becoming cold. Raseph Cafe keeps that same warmth, then pairs it with a cleaner React + Tailwind implementation."
+      - generic [ref=e70]:
+        - article [ref=e71]:
+          - paragraph [ref=e72]: "01"
+          - paragraph [ref=e73]: A warm espresso bar built for slow mornings and late-night catchups.
+        - article [ref=e74]:
+          - paragraph [ref=e75]: "02"
+          - paragraph [ref=e76]: House desserts plated with the same care as our drinks.
+        - article [ref=e77]:
+          - paragraph [ref=e78]: "03"
+          - paragraph [ref=e79]: A cafe experience designed for dine-in, takeout, and events.
+    - generic [ref=e80]:
+      - generic [ref=e81]:
+        - generic [ref=e82]:
+          - paragraph [ref=e83]: Menu
+          - heading "A focused lineup, designed to be memorable." [level=2] [ref=e84]
+          - paragraph [ref=e85]: This menu mirrors the attached brand direction, but it is rebuilt in React with category filtering and a cleaner component structure.
+        - generic [ref=e86]:
+          - button "All" [ref=e87]
+          - button "Coffee" [ref=e88]
+          - button "Beverages" [ref=e89]
+          - button "Desserts" [ref=e90]
+          - button "Meals" [ref=e91]
+      - generic [ref=e92]:
+        - article [ref=e93]:
+          - generic [ref=e94]:
+            - img "Signature Espresso" [ref=e95]
+            - generic [ref=e97]:
+              - generic [ref=e98]: Bestseller
+              - generic [ref=e99]: Coffee
+            - generic [ref=e100]: Featured
+          - generic [ref=e101]:
+            - generic [ref=e102]:
+              - heading "Signature Espresso" [level=3] [ref=e103]
+              - paragraph [ref=e104]: ₱150
+            - paragraph [ref=e105]: Rich, bold single-origin espresso with a clean finish and deep roasted aroma.
+            - generic [ref=e106]:
+              - generic [ref=e107]: Made fresh daily
+              - button "View details" [ref=e108]
+        - article [ref=e109]:
+          - generic [ref=e110]:
+            - img "Caramel Cloud Latte" [ref=e111]
+            - generic [ref=e113]:
+              - generic [ref=e114]: Signature
+              - generic [ref=e115]: Coffee
+            - generic [ref=e116]: Featured
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - heading "Caramel Cloud Latte" [level=3] [ref=e119]
+              - paragraph [ref=e120]: ₱220
+            - paragraph [ref=e121]: Velvety espresso layered with caramel cream and a soft toasted-sugar top.
+            - generic [ref=e122]:
+              - generic [ref=e123]: Made fresh daily
+              - button "View details" [ref=e124]
+        - article [ref=e125]:
+          - generic [ref=e126]:
+            - img "Ube Oat Latte" [ref=e127]
+            - generic [ref=e129]:
+              - generic [ref=e130]: New
+              - generic [ref=e131]: Beverages
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - heading "Ube Oat Latte" [level=3] [ref=e134]
+              - paragraph [ref=e135]: ₱210
+            - paragraph [ref=e136]: Creamy oat milk, earthy ube notes, and a gentle espresso kick for the finish.
+            - generic [ref=e137]:
+              - generic [ref=e138]: Made fresh daily
+              - button "View details" [ref=e139]
+        - article [ref=e140]:
+          - generic [ref=e141]:
+            - img "Calamansi Spark" [ref=e142]
+            - generic [ref=e145]: Beverages
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - heading "Calamansi Spark" [level=3] [ref=e148]
+              - paragraph [ref=e149]: ₱165
+            - paragraph [ref=e150]: Bright citrus soda with calamansi, mint, and just enough sweetness to keep it crisp.
+            - generic [ref=e151]:
+              - generic [ref=e152]: Made fresh daily
+              - button "View details" [ref=e153]
+        - article [ref=e154]:
+          - generic [ref=e155]:
+            - img "Basque Cheesecake" [ref=e156]
+            - generic [ref=e158]:
+              - generic [ref=e159]: House Favorite
+              - generic [ref=e160]: Desserts
+            - generic [ref=e161]: Featured
+          - generic [ref=e162]:
+            - generic [ref=e163]:
+              - heading "Basque Cheesecake" [level=3] [ref=e164]
+              - paragraph [ref=e165]: ₱280
+            - paragraph [ref=e166]: Creamy center, caramelized crown, and a buttery crumb that melts on contact.
+            - generic [ref=e167]:
+              - generic [ref=e168]: Made fresh daily
+              - button "View details" [ref=e169]
+        - article [ref=e170]:
+          - generic [ref=e171]:
+            - img "Matcha Tiramisu Jar" [ref=e172]
+            - generic [ref=e175]: Desserts
+          - generic [ref=e176]:
+            - generic [ref=e177]:
+              - heading "Matcha Tiramisu Jar" [level=3] [ref=e178]
+              - paragraph [ref=e179]: ₱245
+            - paragraph [ref=e180]: Layers of matcha sponge, mascarpone cream, and cocoa dust served in a chilled jar.
+            - generic [ref=e181]:
+              - generic [ref=e182]: Made fresh daily
+              - button "View details" [ref=e183]
+        - article [ref=e184]:
+          - generic [ref=e185]:
+            - img "Truffle Pasta" [ref=e186]
+            - generic [ref=e188]:
+              - generic [ref=e189]: Chef Pick
+              - generic [ref=e190]: Meals
+          - generic [ref=e191]:
+            - generic [ref=e192]:
+              - heading "Truffle Pasta" [level=3] [ref=e193]
+              - paragraph [ref=e194]: ₱385
+            - paragraph [ref=e195]: Al dente pasta tossed in a silky truffle cream with parmesan and herb oil.
+            - generic [ref=e196]:
+              - generic [ref=e197]: Made fresh daily
+              - button "View details" [ref=e198]
+        - article [ref=e199]:
+          - generic [ref=e200]:
+            - img "Cafe Brunch Plate" [ref=e201]
+            - generic [ref=e204]: Meals
+          - generic [ref=e205]:
+            - generic [ref=e206]:
+              - heading "Cafe Brunch Plate" [level=3] [ref=e207]
+              - paragraph [ref=e208]: ₱450
+            - paragraph [ref=e209]: A warm brunch spread of eggs, sourdough, salad, potatoes, and house jam.
+            - generic [ref=e210]:
+              - generic [ref=e211]: Made fresh daily
+              - button "View details" [ref=e212]
+    - generic [ref=e214]:
+      - generic [ref=e215]:
+        - paragraph [ref=e216]: Why Raseph
+        - heading "Premium feel, but still easy to live in." [level=2] [ref=e217]
+        - generic [ref=e218]:
+          - article [ref=e219]:
+            - generic [ref=e220]:
+              - generic [ref=e221]: ☕
+              - generic [ref=e222]:
+                - heading "Careful espresso" [level=3] [ref=e223]
+                - paragraph [ref=e224]: Balanced shots and milk textures with a deep, smooth profile.
+          - article [ref=e225]:
+            - generic [ref=e226]:
+              - generic [ref=e227]: 🍰
+              - generic [ref=e228]:
+                - heading "Dessert-forward" [level=3] [ref=e229]
+                - paragraph [ref=e230]: Plated sweets that hold their own next to the coffee.
+          - article [ref=e231]:
+            - generic [ref=e232]:
+              - generic [ref=e233]: 🪑
+              - generic [ref=e234]:
+                - heading "Reservation ready" [level=3] [ref=e235]
+                - paragraph [ref=e236]: A layout that can welcome small groups without losing atmosphere.
+          - article [ref=e237]:
+            - generic [ref=e238]:
+              - generic [ref=e239]: 📍
+              - generic [ref=e240]:
+                - heading "Community cafe" [level=3] [ref=e241]
+                - paragraph [ref=e242]: Designed to feel local, warm, and easy to come back to.
+      - generic [ref=e244]:
+        - img "Raseph Cafe mood image 1" [ref=e246]
+        - img "Raseph Cafe mood image 2" [ref=e248]
+        - img "Raseph Cafe mood image 3" [ref=e250]
+        - img "Raseph Cafe mood image 4" [ref=e252]
+    - generic [ref=e253]:
+      - generic [ref=e254]:
+        - paragraph [ref=e255]: Reservations
+        - heading "Book the table before the rush." [level=2] [ref=e256]
+        - paragraph [ref=e257]: The form below is intentionally local-only for now. You said the database will be added after this, so this version keeps the experience polished without any backend dependency.
+        - generic [ref=e258]:
+          - generic [ref=e259]:
+            - paragraph [ref=e260]: Hours
+            - paragraph [ref=e261]: 8:00 AM - 10:00 PM
+          - generic [ref=e262]:
+            - paragraph [ref=e263]: Address
+            - paragraph [ref=e264]: Imus, Cavite, Philippines
+          - generic [ref=e265]:
+            - paragraph [ref=e266]: Seating
+            - paragraph [ref=e267]: Indoor / Al fresco
+          - generic [ref=e268]:
+            - paragraph [ref=e269]: Events
+            - paragraph [ref=e270]: Small gatherings & meetings
+      - generic [ref=e271]:
+        - generic [ref=e272]:
+          - generic [ref=e273]:
+            - generic [ref=e274]: Name
+            - textbox "Name" [ref=e275]:
+              - /placeholder: Your full name
+          - generic [ref=e276]:
+            - generic [ref=e277]: Phone
+            - textbox "Phone" [ref=e278]:
+              - /placeholder: 09xx xxx xxxx
+          - generic [ref=e279]:
+            - generic [ref=e280]: Date
+            - textbox "Date" [ref=e281]
+          - generic [ref=e282]:
+            - generic [ref=e283]: Time
+            - textbox "Time" [ref=e284]
+          - generic [ref=e285]:
+            - generic [ref=e286]: Guests
+            - combobox "Guests" [ref=e287]:
+              - option "2 guests" [selected]
+              - option "4 guests"
+              - option "6 guests"
+              - option "8 guests"
+          - generic [ref=e288]:
+            - generic [ref=e289]: Notes
+            - textbox "Notes" [ref=e290]:
+              - /placeholder: Dietary notes, celebration details, or seating preference
+        - button "Request reservation" [ref=e291]
+    - generic [ref=e293]:
+      - generic [ref=e294]:
+        - generic [ref=e295]:
+          - paragraph [ref=e296]: Guest stories
+          - heading "A cafe people want to come back to." [level=2] [ref=e297]
+        - paragraph [ref=e298]: The reference site leans heavily into atmosphere. This version keeps that mood, but tightens the layout and content for a modern React build.
+      - generic [ref=e299]:
+        - blockquote [ref=e300]:
+          - generic [ref=e301]: ★★★★★
+          - paragraph [ref=e302]: The Caramel Cloud Latte tastes like the cafe equivalent of a perfect sunset.
+          - generic [ref=e303]:
+            - paragraph [ref=e304]: Sofia G.
+            - paragraph [ref=e305]: Weekend regular
+        - blockquote [ref=e306]:
+          - generic [ref=e307]: ★★★★★
+          - paragraph [ref=e308]: The cheesecake is polished, the coffee is balanced, and the space feels intentional.
+          - generic [ref=e309]:
+            - paragraph [ref=e310]: Carlo R.
+            - paragraph [ref=e311]: Foodie reviewer
+        - blockquote [ref=e312]:
+          - generic [ref=e313]: ★★★★★
+          - paragraph [ref=e314]: It is the rare cafe that works for meetings, solo work, and dessert runs all at once.
+          - generic [ref=e315]:
+            - paragraph [ref=e316]: Anika C.
+            - paragraph [ref=e317]: Remote worker
+    - generic [ref=e319]:
+      - generic [ref=e320]:
+        - paragraph [ref=e321]: Visit
+        - heading "Find us in Imus and stay a while." [level=2] [ref=e322]
+        - paragraph [ref=e323]: This contact area is a placeholder for the future Supabase-backed version. For now it gives the site a complete storefront presence without depending on any database setup.
+        - generic [ref=e324]:
+          - generic [ref=e325]:
+            - generic [ref=e326]: Address
+            - generic [ref=e327]: Raseph Cafe, Imus, Cavite
+          - generic [ref=e328]:
+            - generic [ref=e329]: Phone
+            - generic [ref=e330]: +63 900 000 0000
+          - generic [ref=e331]:
+            - generic [ref=e332]: Email
+            - generic [ref=e333]: hello@rasephcafe.com
+        - generic [ref=e334]:
+          - textbox "Join the newsletter" [ref=e335]
+          - button "Sign up" [ref=e336]
+      - generic [ref=e338]:
+        - generic [ref=e339]:
+          - img "Cafe interior for Raseph Cafe" [ref=e340]
+          - generic [ref=e342]:
+            - paragraph [ref=e343]: Open daily
+            - paragraph [ref=e344]: 8:00 AM - 10:00 PM
+        - generic [ref=e345]:
+          - generic [ref=e346]:
+            - paragraph [ref=e347]: Morning brew
+            - paragraph [ref=e348]: Light, bright coffees for early starts.
+          - generic [ref=e349]:
+            - paragraph [ref=e350]: Evening dessert
+            - paragraph [ref=e351]: Late-night cakes and slow conversations.
+  - button "0 Cart Subtotal ₱0" [ref=e352]:
+    - generic [ref=e353]: "0"
+    - generic [ref=e354]:
+      - generic [ref=e355]: Cart
+      - generic [ref=e356]: Subtotal ₱0
+  - contentinfo [ref=e357]:
+    - generic [ref=e358]:
+      - generic [ref=e359]:
+        - paragraph [ref=e360]: Raseph Cafe
+        - paragraph [ref=e361]: Built with React, TypeScript, Vite, and Tailwind CSS.
+      - generic [ref=e362]:
+        - generic [ref=e363]: Instagram
+        - generic [ref=e364]: Facebook
+        - generic [ref=e365]: Reservations
+      - paragraph [ref=e366]: © 2026 Raseph Cafe

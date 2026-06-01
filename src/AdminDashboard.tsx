@@ -108,11 +108,9 @@ function AdminDashboard({ onClose, currentUser }: { onClose: () => void; current
   })
 
   useEffect(() => {
-    if (isSupabaseConfigured) {
-      fetchStaff<StaffMember>().then((data) => {
-        if (data.length > 0) setStaff(data)
-      }).catch(() => {})
-    }
+    fetchStaff<StaffMember>().then((data) => {
+      if (data && data.length > 0) setStaff(data)
+    }).catch(() => {})
   }, [])
 
   const metrics = useMemo(

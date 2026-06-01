@@ -227,14 +227,12 @@ function App() {
   const [remoteOrders, setRemoteOrders] = useState<OrderRecord[] | null>(null)
   const [remoteReservations, setRemoteReservations] = useState<ReservationRecord[] | null>(null)
 
-  async function loadRemoteReservations(): Promise<ReservationRecord[]> {
-    if (isSupabaseConfigured) {
-      try {
-        const data = await fetchReservations<ReservationRecord>()
-        if (data.length > 0) return data
-      } catch { /* fall through */ }
-    }
-    return []
+  async function loadRemoteReservations(): Promise<ReservationRecord[] | null> {
+    try {
+      const data = await fetchReservations<ReservationRecord>()
+      if (data !== null) return data
+    } catch { /* fall through */ }
+    return null
   }
 
   function loadLocalReservations(): ReservationRecord[] {
@@ -261,7 +259,8 @@ function App() {
 
   async function handleReservationSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
+    const form = event.currentTarget
+    const data = new FormData(form)
     const reservation: ReservationRecord = {
       id: Date.now(),
       name: String(data.get('res-name') || ''),
@@ -280,8 +279,8 @@ function App() {
     const existing = JSON.parse(localStorage.getItem('reservations') || '[]')
     existing.push(reservation)
     localStorage.setItem('reservations', JSON.stringify(existing))
+    form.reset()
     setReservationSent(true)
-    event.currentTarget.reset()
     loadRemoteReservations().then(setRemoteReservations)
   }
 
@@ -378,14 +377,12 @@ function App() {
 
   const [cartNotes, setCartNotes] = useState('')
 
-  async function loadRemoteOrders(): Promise<OrderRecord[]> {
-    if (isSupabaseConfigured) {
-      try {
-        const data = await fetchOrders<OrderRecord>()
-        if (data.length > 0) return data
-      } catch { /* fall through */ }
-    }
-    return []
+  async function loadRemoteOrders(): Promise<OrderRecord[] | null> {
+    try {
+      const data = await fetchOrders<OrderRecord>()
+      if (data !== null) return data
+    } catch { /* fall through */ }
+    return null
   }
 
   function loadLocalOrders(): OrderRecord[] {
@@ -1089,9 +1086,9 @@ function App() {
 
                       <div className="space-y-4">
                         <div className="grid gap-3 sm:grid-cols-3">
-                          <div>
+                          <div className="relative z-10 flex flex-col gap-2">
                             <p className="text-xs uppercase text-[#a98b64]">Size</p>
-                            <div className="mt-2 flex gap-2">
+                            <div className="flex gap-2">
                               {(['Small', 'Medium', 'Large'] as CartItem['size'][]).map((s) => (
                                 <button
                                   key={s}
@@ -1105,9 +1102,9 @@ function App() {
                             </div>
                           </div>
 
-                          <div>
+                          <div className="flex flex-col gap-2">
                             <p className="text-xs uppercase text-[#a98b64]">Sugar</p>
-                            <select value={customSugar} onChange={(e) => setCustomSugar(e.currentTarget.value as any)} className="mt-2 w-full rounded-2xl border border-white/10 bg-[#0c0502] px-3 py-2 text-white">
+                            <select value={customSugar} onChange={(e) => setCustomSugar(e.currentTarget.value as any)} className="w-full rounded-2xl border border-white/10 bg-[#0c0502] px-3 py-2 text-white">
                               <option>No</option>
                               <option>Less</option>
                               <option>Regular</option>
@@ -1115,9 +1112,9 @@ function App() {
                             </select>
                           </div>
 
-                          <div>
+                          <div className="flex flex-col gap-2">
                             <p className="text-xs uppercase text-[#a98b64]">Ice</p>
-                            <select value={customIce} onChange={(e) => setCustomIce(e.currentTarget.value as any)} className="mt-2 w-full rounded-2xl border border-white/10 bg-[#0c0502] px-3 py-2 text-white">
+                            <select value={customIce} onChange={(e) => setCustomIce(e.currentTarget.value as any)} className="w-full rounded-2xl border border-white/10 bg-[#0c0502] px-3 py-2 text-white">
                               <option>No</option>
                               <option>Less</option>
                               <option>Regular</option>
@@ -1176,6 +1173,12 @@ function App() {
                 </div>
               </div>
             ) : null}
+
+          {orderMessage ? (
+            <div className="fixed bottom-24 right-6 z-50 rounded-3xl border border-[#e1ab43]/25 bg-[#120804]/95 px-5 py-4 text-sm text-[#f5d99a] shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+              {orderMessage}
+            </div>
+          ) : null}
           </>
         )}
 
